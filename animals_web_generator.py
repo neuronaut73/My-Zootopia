@@ -1,38 +1,50 @@
 import json
 
 
-def load_data(file_path):
+def load_data(file_name):
     """ Loads a JSON file """
-    with open(file_path, "r") as handle:
+    with open(file_name, "r") as handle:
         return json.load(handle)
 
 
-def load_html():
-    with open("animals_template.html", "r") as handle:
+def load_html(file_name):
+    with open(file_name, "r") as handle:
         return handle.read()
 
 
-html_string = load_html()
+def save_file(data: str, file_name: str):
+    with open(file_name, "w") as f:
+        return f.write(data)
 
-animals_data = load_data('animals_data.json')
 
-output = ''  # define an empty string
-for dict in animals_data:
-    name = dict["name"]
-    location = dict["locations"][0]
-    diet = dict["characteristics"]["diet"]
-    type_fox = dict["characteristics"].get("type")
+def generate_string_with_animals_data(animals_data):
+    output = ''  # define an empty string
+    for dict in animals_data:
+        name = dict["name"]
+        location = dict["locations"][0]
+        diet = dict["characteristics"]["diet"]
+        type_fox = dict["characteristics"].get("type")
 
-    variables = [name, location, diet, type_fox]
+        variables = [name, location, diet, type_fox]
 
-    if all(var is not None for var in variables):
-        # append information to each string
-        output += f"Name: {name}\n"
-        output += f"Diet: {diet}\n"
-        output += f"Location: {location}\n"
-        output += f"Type: {type_fox}\n"
+        if all(var is not None for var in variables):
+            # append information to each string
+            output += f"Name: {name}\n"
+            output += f"Diet: {diet}\n"
+            output += f"Location: {location}\n"
+            output += f"Type: {type_fox}\n"
+            return output
 
-print(output)
 
+def main():
+    html_template = load_html("animals_template.html")
+    animals_data = load_data('animals_data.json')
+    animals_data_string = generate_string_with_animals_data(animals_data)
+    html_template_new = html_template.replace("__REPLACE_ANIMALS_INFO__", animals_data_string)
+    save_file(html_template_new, "animals.html")
+
+
+if __name__ == "__main__":
+    main()
 
 
