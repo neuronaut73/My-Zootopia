@@ -9,16 +9,19 @@ def load_data(file_name):
 
 
 def load_html(file_name):
+    """Loads the html file"""
     with open(file_name, "r") as handle:
         return handle.read()
 
 
 def save_file(data: str, file_name: str):
+    """Saves the animal html data to a html file"""
     with open(file_name, "w") as f:
         return f.write(data)
 
 
 def generate_string_with_animals_data(animals_data):
+    """Generates the animals cards plus an animal image from DuckDuckGo"""
     output = ''  # define an empty string
     for dict in animals_data:
         name = dict["name"]
@@ -31,8 +34,8 @@ def generate_string_with_animals_data(animals_data):
 
         if all(var is not None for var in variables):
             output += f'<li class="cards__item">'
-            output += f'<div class="card__content">'  # NEW FLEX CONTAINER
-            output += f'  <div class="card__info">'    # TEXT COLUMN
+            output += f'<div class="card__content">'  # added content class
+            output += f'  <div class="card__info">'    # added info class
             output += f'    <div class="card__title">{name}</div>'
             output += f'    <p class="card__text">'
             output += f'      <strong>Diet:</strong> {diet}<br/>'
@@ -40,12 +43,13 @@ def generate_string_with_animals_data(animals_data):
             output += f'      <strong>Type:</strong> {type_fox}<br/>'
             output += f'    </p>'
             output += f'  </div>'
-            output += f'  <figure class="card__image">'  # IMAGE COLUMN
+            output += f'  <figure class="card__image">'  # added card image class
             output += f'    <img src="{image_url}" alt="{name}">'
             output += f'  </figure>'
-            output += f'</div>'  # Close card__content
+            output += f'</div>'
             output += f'</li>'
     return output
+
 
 def insert_css_info(html_data: str):
     """Replaces the closing head tag with additional css info"""
