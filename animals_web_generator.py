@@ -26,6 +26,7 @@ def generate_string_with_animals_data(animals_data):
         type_fox = dict["characteristics"].get("type")
 
         variables = [name, location, diet, type_fox]
+        print(variables)
 
         if all(var is not None for var in variables):
             # append information to each string
@@ -33,7 +34,7 @@ def generate_string_with_animals_data(animals_data):
             output += f"Diet: {diet}\n"
             output += f"Location: {location}\n"
             output += f"Type: {type_fox}\n"
-            return output
+    return output
 
 
 def main():
