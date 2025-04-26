@@ -33,15 +33,19 @@ def generate_string_with_animals_data(animals_data):
 
         if all(var is not None for var in variables):
             output += f'<li class="cards__item">'
-            output += f'<div class="card__title">{name}</div>'
-            output += f'<p class="card__text">'
-            output += f'<strong>Diet:</strong> {diet}<br/>'
-            output += f'<strong>Location:</strong> {location}<br/>'
-            output += f'<strong>Type:</strong> {type_fox}<br/>'
-            output += f'</p>'
-            output += f'<figure class="card__image">'
-            output += f'<img src={image_url} alt={name}>'
-            output += f'</figure>'
+            output += f'<div class="card__content">'  # NEW FLEX CONTAINER
+            output += f'  <div class="card__info">'    # TEXT COLUMN
+            output += f'    <div class="card__title">{name}</div>'
+            output += f'    <p class="card__text">'
+            output += f'      <strong>Diet:</strong> {diet}<br/>'
+            output += f'      <strong>Location:</strong> {location}<br/>'
+            output += f'      <strong>Type:</strong> {type_fox}<br/>'
+            output += f'    </p>'
+            output += f'  </div>'
+            output += f'  <figure class="card__image">'  # IMAGE COLUMN
+            output += f'    <img src="{image_url}" alt="{name}">'
+            output += f'  </figure>'
+            output += f'</div>'  # Close card__content
             output += f'</li>'
     return output
 
