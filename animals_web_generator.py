@@ -30,10 +30,12 @@ def generate_string_with_animals_data(animals_data):
 
         if all(var is not None for var in variables):
             output += '<li class="cards__item">'
-            output += f"Name: {name}<br/>\n"
-            output += f"Diet: {diet}<br/>\n"
-            output += f"Location: {location}<br/>\n"
-            output += f"Type: {type_fox}<br/>\n"
+            output += '<div class="card__title">{name}</div>'
+            output += '<p class="card__text">'
+            output += '<strong>Diet:</strong> {diet}<br/>'
+            output += '<strong>Location:</strong> {location}<br/>'
+            output += '<strong>Type:</strong> {type_fox}<br/>'
+            output += '</p>'
             output += '</li>'
     return output
 
