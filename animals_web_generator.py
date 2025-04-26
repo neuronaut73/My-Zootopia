@@ -29,11 +29,12 @@ def generate_string_with_animals_data(animals_data):
         print(variables)
 
         if all(var is not None for var in variables):
-            # append information to each string
-            output += f"Name: {name}\n"
-            output += f"Diet: {diet}\n"
-            output += f"Location: {location}\n"
-            output += f"Type: {type_fox}\n"
+            output += '<li class="cards__item">'
+            output += f"Name: {name}<br/>\n"
+            output += f"Diet: {diet}<br/>\n"
+            output += f"Location: {location}<br/>\n"
+            output += f"Type: {type_fox}<br/>\n"
+            output += '</li>'
     return output
 
 
