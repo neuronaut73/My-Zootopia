@@ -26,10 +26,8 @@ def generate_string_with_animals_data(animals_data):
         diet = dict["characteristics"]["diet"]
         type_fox = dict["characteristics"].get("type")
         image_url = fetch_image_url(name)
-        print(image_url)
 
         variables = [name, location, diet, type_fox]
-        print(variables)
 
         if all(var is not None for var in variables):
             output += f'<li class="cards__item">'
@@ -49,12 +47,42 @@ def generate_string_with_animals_data(animals_data):
             output += f'</li>'
     return output
 
+def insert_css_info(html_data: str):
+    """Replaces the closing head tag with additional css info"""
+    html_data_new = html_data.replace(
+        """</style>
+    </head>""",
+
+"""
+    .card__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card__info {
+  flex: 2;
+}
+
+.card__image img {
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+}
+""" +
+"""</style>
+    </head>""")
+
+    return html_data_new
+
 
 def main():
     html_template = load_html("animals_template.html")
     animals_data = load_data('animals_data.json')
     animals_data_string = generate_string_with_animals_data(animals_data)
     html_template_new = html_template.replace("__REPLACE_ANIMALS_INFO__", animals_data_string)
+    html_template_new = insert_css_info(html_template_new)
     save_file(html_template_new, "animals.html")
 
 
