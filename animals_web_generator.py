@@ -2,13 +2,19 @@ import json
 
 
 def load_data(file_path):
-  """ Loads a JSON file """
-  with open(file_path, "r") as handle:
-    return json.load(handle)
+    """ Loads a JSON file """
+    with open(file_path, "r") as handle:
+        return json.load(handle)
 
+
+def load_html():
+    with open("animals_template.html", "r") as handle:
+        return handle.read()
+
+
+html_string = load_html()
 
 animals_data = load_data('animals_data.json')
-
 
 output = ''  # define an empty string
 for dict in animals_data:
